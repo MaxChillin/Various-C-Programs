@@ -1,0 +1,33 @@
+#include <iostream>
+
+
+class MyClass
+{
+private:
+	std::string name;
+	/*
+		Marking the varible with the mutable keyword allows it to be modified inside a const method
+	*/
+	mutable int counter = 0;
+public:
+	/*
+		Normally when you mark a method with const you can't change anything inside that method
+		but if we want to track how many times this function is called then we can use the mutable
+		keyword on a variable and then use that varible inside the const method
+	*/
+	const std::string& getName() const
+	{
+		counter++;
+		return name;
+	}
+};
+
+
+
+int main() {
+
+	const MyClass m;
+	m.getName();
+
+	std::cin.get();
+}
